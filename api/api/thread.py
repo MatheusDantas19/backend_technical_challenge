@@ -35,7 +35,7 @@ class ThreadGetValidation (threading.Thread):
         logger.info('Status da avaliacao: ' + status)
         
 
-    def getValidation(self ,request, birth_date, value_credit):
+    def getValidation(self, birth_date, value_credit):
         time.sleep(10)
        
         res = requests.get(
