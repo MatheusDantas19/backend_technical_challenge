@@ -14,8 +14,8 @@ services:
     command: bash -c "
       while !</dev/tcp/db/5432; do sleep 1; done; 
       python manage.py migrate && 
-      python manage.py test &&
       python manage.py loaddata requisition_credit.json && 
+      python manage.py test &&
       python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./api/:/code
