@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "docker"
+      POSTGRES_DB: "postgres"
+    ports: 
+      - "5432:5432"
+
+  api:
+    build: ./api/
+    command: bash -c "
+      while !</dev/tcp/db/5432; do sleep 1; done; 
+      python manage.py migrate && 
+      python manage.py test &&
+      python manage.py loaddata requisition_credit.json && 
+      python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./api/:/code
+    ports:
+      - "8000:8000"
+    depends_on: 
+      - db
+      - validation
+
+  validation:
+    build: ./system_validation/
+    command: python manage.py runserver 0.0.0.0:3000
+    volumes:
+      - ./system_validation/:/code
+    ports:
+      - "3000:3000"
+    
