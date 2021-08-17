@@ -57,7 +57,7 @@ Para consultar o status basta colocar o valor do ticket na url, exemplo: http://
 Na hora que é feito o POST pra o pedido de crédito, imediatamente é gerado um ticket, os dados da requisição são inserido no banco de dados junto atributo `status` o seu valor inicia com "Em avaliação" e após isso é retornado como resposta o ticket da solicitação. Em meio a esse processo é disparado uma thread assincrona que irá enviar os dados para serem validados em outro sistema, isso dá uma grande vantagem pois não vai ser preciso esperar a resposta do servidor de validação para poder retornar o ticket para o usuário. Logo quando a resposta do sistema validação é retornada, a resposta da solicitação de crédito é atualizada no banco de dados. 
 
 ## Logging implementado
-Primeira vez que mexir com logging, achei muito interessante pois é registrado as ações do sistema e ainda definir os logs na linha de código sendo assim para ter o controle do que acontece com o sistema a cada requisição realizada.
+Nesse desafio pela primeira vez que mexir com logging, achei muito interessante, pois podemos registrar as ações do sistema e ainda definir os quais tipos logs queremos, para assim ter o controle do que acontece com o sistema e também registrar as ações de cada requisição realizada.
 
 ![Alt text](./images_readme/logging.PNG?raw=true "Optional Title")
 
